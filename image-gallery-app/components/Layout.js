@@ -8,7 +8,7 @@ const LayoutContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  box-shadow: 5px 10px 18px #888888;
+  /* box-shadow: 5px 10px 18px #888888; */
   margin: ${(props) => (props.viewType === 'list' ? '0 30%' : '0 15%')};
 `;
 

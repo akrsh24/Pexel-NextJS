@@ -2,29 +2,26 @@ import styled from 'styled-components';
 import ImageComponent from './Image';
 
 const GridViewContainer = styled.article`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   flex: 1;
-
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
   overflow: auto;
-  margin-top: 20px;
   width: 100%;
   height: 100%;
 `;
 
 const ImageContainer = styled.section`
-  width: 40%;
+  width: 80%;
   position: relative;
   margin: 20px;
+  border: 1px solid #ffffff;
 `;
 
-export default function GridView({ pagedImages }) {
+export default function GridView({ pagedImages, imgRef }) {
   return (
     <GridViewContainer>
       {pagedImages.map((img) => (
-        <ImageContainer key={img.id}>
+        <ImageContainer key={img.id} ref={imgRef}>
           <ImageComponent
             imgSrc={img.src.original}
             alt={`${img.photographer}-${img.id} photo`}
