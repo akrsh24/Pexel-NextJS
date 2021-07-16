@@ -24,6 +24,12 @@ p{
   box-sizing: border-box;
   color:#ffffff;
 }
+
+.onHover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 `;
 
 function MyApp({ Component, pageProps }) {
