@@ -14,6 +14,11 @@ a {
   text-decoration: none;
 }
 
+p{
+  margin: 0;
+  font-size: 0.8rem;
+}
+
 * {
   box-sizing: border-box;
 }

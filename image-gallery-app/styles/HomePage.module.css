@@ -1,0 +1,7 @@
+.viewIcons {
+    font-size: 1.5rem;
+}
+
+.viewIcons:hover {
+    cursor: pointer;
+}

@@ -20,12 +20,14 @@ const LayoutNav = styled.nav`
 `;
 
 const LayoutMain = styled.main`
-  padding: 5rem 0;
-  flex: 1;
+  padding: 1rem 0;
+  flex: 1 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  width: 100%;
+  overflow: scroll;
 `;
 
 const LayoutFooter = styled.footer`
@@ -70,7 +72,7 @@ export default function Layout({
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by Pexels
+          Photos provided by Pexels{' '}
         </a>
       </LayoutFooter>
     </LayoutContainer>
