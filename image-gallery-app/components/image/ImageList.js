@@ -1,27 +1,16 @@
 import styled from 'styled-components';
-import ImageComponent from './Image';
-
-const ListViewContainer = styled.section`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow: auto;
-  width: 100%;
-  height: 100%;
-`;
+import ImageComponent from './ImageComponent';
 
 const ImageContainer = styled.section`
   width: 80%;
   position: relative;
-  margin: 20px 0;
+  margin: 20px;
   border: 1px solid #ffffff;
 `;
 
-export default function ListView({ pagedImages = [], imgRef }) {
+export default function ImageList({ pagedImages, imgRef }) {
   return (
-    <ListViewContainer>
+    <>
       {pagedImages.map((img, index) => {
         if (pagedImages.length === index + 1) {
           return (
@@ -47,6 +36,6 @@ export default function ListView({ pagedImages = [], imgRef }) {
           );
         }
       })}
-    </ListViewContainer>
+    </>
   );
 }

@@ -1,11 +1,11 @@
 import { useRef, useState, useCallback } from 'react';
 import { FcList, FcGrid } from 'react-icons/fc';
 import styled from 'styled-components';
-import Layout from '@/components/Layout';
-import ListView from '@/components/ListView';
-import GridView from '@/components/GridView';
-import styles from '@/styles/HomePage.module.css';
+import Layout from '@/components/layout/Layout';
+import ListView from '@/components/views/ListView';
+import GridView from '@/components/views/GridView';
 import useImageList from 'hooks/useImageList';
+import styles from '@/styles/HomePage.module.css';
 
 const ViewOptionSection = styled.section`
   display: flex;
@@ -30,14 +30,18 @@ export default function HomePage() {
     (node) => {
       //if loading, just return back
       if (isLoading) return;
+
       //if there's an observer just disconnect it for new last item to be connected.
       if (observer.current) observer.current.disconnect();
+
+      //observer-intersection pattern, find the first entry and when callback runs , increment pageNumber
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
           console.log('Visible');
           setPageNumber((prevPage) => prevPage + 1);
         }
       });
+
       //just observe node
       if (node) observer.current.observe(node);
     },
