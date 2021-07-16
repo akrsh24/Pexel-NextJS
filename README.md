@@ -1,2 +1,2 @@
 # Unsplash-NextJS
-A repository for a NextJS Application using unsplash API. 
+A repository for a NextJS Application using pexel image API. 
