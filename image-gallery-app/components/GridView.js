@@ -20,16 +20,31 @@ const ImageContainer = styled.section`
 export default function GridView({ pagedImages, imgRef }) {
   return (
     <GridViewContainer>
-      {pagedImages.map((img) => (
-        <ImageContainer key={img.id} ref={imgRef}>
-          <ImageComponent
-            imgSrc={img.src.original}
-            alt={`${img.photographer}-${img.id} photo`}
-            width="300px"
-            height="300px"
-          />
-        </ImageContainer>
-      ))}
+      {pagedImages.map((img, index) => {
+        if (pagedImages.length === index + 1) {
+          return (
+            <ImageContainer key={img.id} ref={imgRef}>
+              <ImageComponent
+                imgSrc={img.src.original}
+                alt={`${img.photographer}-${img.id} photo`}
+                width="200px"
+                height="200px"
+              />
+            </ImageContainer>
+          );
+        } else {
+          return (
+            <ImageContainer key={img.id}>
+              <ImageComponent
+                imgSrc={img.src.original}
+                alt={`${img.photographer}-${img.id} photo`}
+                width="200px"
+                height="200px"
+              />
+            </ImageContainer>
+          );
+        }
+      })}
     </GridViewContainer>
   );
 }

@@ -50,7 +50,6 @@ export default function Layout({
   title,
   keywords,
   content,
-  description,
   children,
   viewType,
 }) {
@@ -58,7 +57,7 @@ export default function Layout({
     <LayoutContainer viewType={viewType}>
       <Head>
         <title>{title}</title>
-        <meta name={description} content={content} />
+        <meta name="description" content={content} />
         <meta name="keywords" content={keywords} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -78,3 +77,9 @@ export default function Layout({
     </LayoutContainer>
   );
 }
+
+Layout.defaultProps = {
+  title: 'Pexels Image Gallery',
+  keywords: 'image-gallery, NextJS',
+  content: 'Image gallery made using NextJS',
+};
