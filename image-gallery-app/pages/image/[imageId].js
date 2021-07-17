@@ -4,7 +4,6 @@ import useImageListByID from 'hooks/useImageListByID';
 import { ImageContainer } from '@/components/image/ImageList';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { BiArrowToLeft } from 'react-icons/bi';
 
 const DetailsSection = styled.ul`
   display: flex;
@@ -20,6 +19,11 @@ const DetailsSection = styled.ul`
 
 const DetailsSectionContent = styled.li`
   margin: 10px;
+`;
+
+const StyledAnchorLink = styled.a`
+  text-decoration: underline;
+  color: #0492c2;
 `;
 
 export default function Image() {
@@ -55,9 +59,17 @@ export default function Image() {
               Photographer: {imageInfo.photographer}
             </DetailsSectionContent>
             <DetailsSectionContent>
-              Photographer URL: {imageInfo.photographer_url}
+              Photographer URL:{' '}
+              <StyledAnchorLink href={imageInfo.photographer_url}>
+                {imageInfo.photographer_url}
+              </StyledAnchorLink>
             </DetailsSectionContent>
-            <DetailsSectionContent>URL: {imageInfo.url}</DetailsSectionContent>
+            <DetailsSectionContent>
+              URL:
+              <StyledAnchorLink href={imageInfo.url}>
+                {imageInfo.url}
+              </StyledAnchorLink>
+            </DetailsSectionContent>
           </DetailsSection>
           <p onClick={handleBack} className="onHover">
             Back
