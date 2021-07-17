@@ -47,7 +47,6 @@ export default function Image() {
               alt={`${imageInfo.photographer}-${imageInfo.id} photo`}
               width="200px"
               height="200px"
-              handleClick={() => handleImageClick(imageInfo.id)}
             />
           </ImageContainer>
           <DetailsSection>
