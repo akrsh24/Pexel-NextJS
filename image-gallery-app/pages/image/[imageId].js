@@ -41,7 +41,7 @@ export default function Image() {
     <Layout viewType="grid">
       {Object.keys(imageInfo).length && (
         <>
-          <ImageContainer key={imageInfo.id} customWidth="45%">
+          <ImageContainer key={imageInfo.id} customWidth="40%">
             <ImageComponent
               imgSrc={imageInfo.src.original}
               alt={`${imageInfo.photographer}-${imageInfo.id} photo`}
