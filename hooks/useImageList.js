@@ -21,6 +21,7 @@ export default function useImageList(pageNumber) {
         setHasMore(pageNumber * PAGE_SIZE < pagedImages.total_results);
         setIsLoading(false);
       } catch (error) {
+        console.error('Error occured=>', error);
         setImageList([]);
         setIsError(true);
       }
