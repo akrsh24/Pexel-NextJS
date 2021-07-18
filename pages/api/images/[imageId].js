@@ -1,6 +1,27 @@
 import { PEXEL_API_URL } from '@/config/index';
+import Cors from 'cors';
+
+const cors = Cors({
+  methods: ['GET', 'HEAD'],
+});
+
+// Helper method to wait for a middleware to execute before continuing
+// And to throw an error when an error happens in a middleware
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+
+      return resolve(result);
+    });
+  });
+}
 
 export default async function getImageByID(req, res) {
+  await runMiddleware(req, res, cors);
+
   const { imageId } = req.query;
   if (req.method === 'GET') {
     const response = await fetch(`${PEXEL_API_URL}/photos/${imageId}`, {
