@@ -6,6 +6,6 @@ export const environment = {
     API_URL: 'http://localhost:3000',
   },
   prodcution: {
-    API_URL: 'https://pexel-next-js.vercel.app',
+    API_URL: 'http://localhost:3000',
   },
 };
