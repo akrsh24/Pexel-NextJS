@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { environment } from '../config';
+const env = process.env.NODE_ENV || 'development';
 
 export default function useImageListByID(imageId) {
   const [imageInfo, setImageInfo] = useState({});
@@ -10,7 +12,9 @@ export default function useImageListByID(imageId) {
     setIsError(false);
     const fetchImagesByID = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/images/${imageId}`);
+        const res = await fetch(
+          `${environment[env].API_URL}/api/images/${imageId}`
+        );
         const fetchedImage = await res.json();
         setImageInfo(fetchedImage);
         setIsLoading(false);

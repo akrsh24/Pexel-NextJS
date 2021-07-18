@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { PAGE_SIZE } from '../config';
+import { environment, PAGE_SIZE } from '../config';
+const env = process.env.NODE_ENV || 'development';
 
 export default function useImageList(pageNumber) {
   const [imageList, setImageList] = useState([]);
@@ -13,7 +14,7 @@ export default function useImageList(pageNumber) {
     const fetchImages = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/images?per_page=${PAGE_SIZE}&page=${pageNumber}`
+          `${environment[env].API_URL}/api/images?per_page=${PAGE_SIZE}&page=${pageNumber}`
         );
         const pagedImages = await res.json();
         setImageList((prevImages) => [...prevImages, ...pagedImages.photos]);
