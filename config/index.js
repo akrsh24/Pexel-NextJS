@@ -7,6 +7,6 @@ export const environment = {
   },
   production: {
     API_URL:
-      'https://60f45932f706dbd5c61b6b4d--lucid-kepler-68ad61.netlify.app/',
+      'https://60f45932f706dbd5c61b6b4d--lucid-kepler-68ad61.netlify.app',
   },
 };
