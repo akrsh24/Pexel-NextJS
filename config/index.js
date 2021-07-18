@@ -6,6 +6,6 @@ export const environment = {
     API_URL: 'http://localhost:3000',
   },
   production: {
-    API_URL: 'https://pexel-next-js-vdm0vygiz-akrsh24.vercel.app',
+    API_URL: 'https://pexel-next-js-f9qhwjyza-akrsh24.vercel.app',
   },
 };
