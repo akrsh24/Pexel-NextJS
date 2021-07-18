@@ -8,8 +8,6 @@ export default function useImageList(pageNumber) {
   const [isError, setIsError] = useState(false);
   const [hasMore, setHasMore] = useState(false);
 
-  console.log('environment[env].API_URL', environment[env].API_URL);
-
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);

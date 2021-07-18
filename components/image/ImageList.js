@@ -13,7 +13,6 @@ export default function ImageList({ pagedImages, imgRef }) {
   const router = useRouter();
 
   const handleImageClick = (imageId) => {
-    console.log('Clicked', imageId);
     router.push(`/image/${imageId}`);
   };
 
