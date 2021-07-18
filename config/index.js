@@ -5,7 +5,7 @@ export const environment = {
   development: {
     API_URL: 'http://localhost:3000',
   },
-  prodcution: {
+  production: {
     API_URL: 'http://localhost:3000',
   },
 };
