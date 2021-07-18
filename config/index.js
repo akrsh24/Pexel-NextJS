@@ -6,7 +6,6 @@ export const environment = {
     API_URL: 'http://localhost:3000',
   },
   prodcution: {
-    API_URL:
-      'https://60f44238900ce0ca0888b68f--lucid-kepler-68ad61.netlify.app',
+    API_URL: 'https://pexel-next-js.vercel.app',
   },
 };
