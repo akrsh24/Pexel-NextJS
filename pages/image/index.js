@@ -20,16 +20,16 @@ const Divider = styled.hr`
   width: 100%;
 `;
 
-export default function HomePage() {
+export default function HomePage({ images }) {
   const [viewType, setViewType] = useState('list');
   const [pageNumber, setPageNumber] = useState(1);
   const { isLoading, isError, imageList, hasMore } = useImageList(pageNumber);
-  // const [pagedImages, setPagedImages] = useState(images);
+  const [pagedImages, setPagedImages] = useState(images);
 
-  // useEffect(() => {
-  //   if (imageList.length) setPagedImages(imageList);
-  //   else setPagedImages(images);
-  // }, [imageList, images]);
+  useEffect(() => {
+    if (imageList.length) setPagedImages(imageList);
+    else setPagedImages(images);
+  }, [imageList, images]);
 
   const observer = useRef();
   const lastImageForAPageRef = useCallback(
@@ -73,9 +73,9 @@ export default function HomePage() {
       <Divider />
       <div style={{ height: '100%', width: '100%' }} id="img-section">
         {viewType === 'list' ? (
-          <ListView pagedImages={imageList} imgRef={lastImageForAPageRef} />
+          <ListView pagedImages={pagedImages} imgRef={lastImageForAPageRef} />
         ) : (
-          <GridView pagedImages={imageList} imgRef={lastImageForAPageRef} />
+          <GridView pagedImages={pagedImages} imgRef={lastImageForAPageRef} />
         )}
       </div>
       <div>{isLoading && 'Loading...'}</div>
@@ -84,19 +84,19 @@ export default function HomePage() {
   );
 }
 
-// export async function getServerSideProps() {
-//   const res = await fetch(
-//     `https://api.pexels.com/v1/search?query=people&per_page=10&page=1`,
-//     {
-//       headers: {
-//         Authorization: process.env.NEXT_PUBLIC_PEXEL_API_KEY,
-//       },
-//     }
-//   );
-//   const pagedImages = await res.json();
-//   return {
-//     props: {
-//       images: pagedImages.photos,
-//     },
-//   };
-// }
+export async function getServerSideProps(context) {
+  const res = await fetch(
+    `https://api.pexels.com/v1/search?query=people&per_page=10&page=1`,
+    {
+      headers: {
+        Authorization: process.env.NEXT_PUBLIC_PEXEL_API_KEY,
+      },
+    }
+  );
+  const pagedImages = await res.json();
+  return {
+    props: {
+      images: pagedImages.photos,
+    },
+  };
+}
