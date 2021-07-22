@@ -6,8 +6,6 @@ import ListView from '@/components/views/ListView';
 import GridView from '@/components/views/GridView';
 import useImageList from 'hooks/useImageList';
 import styles from '@/styles/HomePage.module.css';
-import { environment, PAGE_SIZE } from '@/config/index';
-const env = process.env.NODE_ENV || 'development';
 
 const ViewOptionSection = styled.section`
   display: flex;
@@ -22,17 +20,16 @@ const Divider = styled.hr`
   width: 100%;
 `;
 
-export default function HomePage({ images }) {
+export default function HomePage() {
   const [viewType, setViewType] = useState('list');
   const [pageNumber, setPageNumber] = useState(1);
   const { isLoading, isError, imageList, hasMore } = useImageList(pageNumber);
-  const [pagedImages, setPagedImages] = useState(images);
+  // const [pagedImages, setPagedImages] = useState(images);
 
-  useEffect(() => {
-    console.log(`${environment[env].API_URL}`);
-    if (imageList.length) setPagedImages(imageList);
-    else setPagedImages(images);
-  }, [imageList, images]);
+  // useEffect(() => {
+  //   if (imageList.length) setPagedImages(imageList);
+  //   else setPagedImages(images);
+  // }, [imageList, images]);
 
   const observer = useRef();
   const lastImageForAPageRef = useCallback(
@@ -76,9 +73,9 @@ export default function HomePage({ images }) {
       <Divider />
       <div style={{ height: '100%', width: '100%' }} id="img-section">
         {viewType === 'list' ? (
-          <ListView pagedImages={pagedImages} imgRef={lastImageForAPageRef} />
+          <ListView pagedImages={imageList} imgRef={lastImageForAPageRef} />
         ) : (
-          <GridView pagedImages={pagedImages} imgRef={lastImageForAPageRef} />
+          <GridView pagedImages={imageList} imgRef={lastImageForAPageRef} />
         )}
       </div>
       <div>{isLoading && 'Loading...'}</div>
@@ -87,19 +84,19 @@ export default function HomePage({ images }) {
   );
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(
-    `https://api.pexels.com/v1/search?query=people&per_page=10&page=1`,
-    {
-      headers: {
-        Authorization: process.env.NEXT_PUBLIC_PEXEL_API_KEY,
-      },
-    }
-  );
-  const pagedImages = await res.json();
-  return {
-    props: {
-      images: pagedImages.photos,
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   const res = await fetch(
+//     `https://api.pexels.com/v1/search?query=people&per_page=10&page=1`,
+//     {
+//       headers: {
+//         Authorization: process.env.NEXT_PUBLIC_PEXEL_API_KEY,
+//       },
+//     }
+//   );
+//   const pagedImages = await res.json();
+//   return {
+//     props: {
+//       images: pagedImages.photos,
+//     },
+//   };
+// }
