@@ -88,7 +88,6 @@ export default function HomePage({ images }) {
 }
 
 export async function getServerSideProps() {
-  console.log('Server', `${environment[env].API_URL}`);
   const res = await fetch(
     `https://api.pexels.com/v1/search?query=people&per_page=10&page=1`,
     {
