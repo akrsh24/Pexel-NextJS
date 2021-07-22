@@ -90,7 +90,12 @@ export default function HomePage({ images }) {
 export async function getServerSideProps() {
   console.log('Server', `${environment[env].API_URL}`);
   const res = await fetch(
-    `${environment[env].API_URL}/api/images?per_page=${PAGE_SIZE}&page=1`
+    `https://api.pexels.com/v1/search?query=people&per_page=10&page=1`,
+    {
+      headers: {
+        Authorization: process.env.NEXT_PUBLIC_PEXEL_API_KEY,
+      },
+    }
   );
   const pagedImages = await res.json();
   return {
