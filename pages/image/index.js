@@ -88,6 +88,7 @@ export default function HomePage({ images }) {
 }
 
 export async function getServerSideProps() {
+  console.log('Server', `${environment[env].API_URL}`);
   const res = await fetch(
     `${environment[env].API_URL}/api/images?per_page=${PAGE_SIZE}&page=1`
   );
