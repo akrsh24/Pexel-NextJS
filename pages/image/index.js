@@ -29,6 +29,7 @@ export default function HomePage({ images }) {
   const [pagedImages, setPagedImages] = useState(images);
 
   useEffect(() => {
+    console.log(`${environment[env].API_URL}`);
     if (imageList.length) setPagedImages(imageList);
     else setPagedImages(images);
   }, [imageList, images]);
