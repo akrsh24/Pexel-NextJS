@@ -21,7 +21,7 @@ export default function ImageList({ pagedImages, imgRef }) {
       {pagedImages.map((img, index) => {
         if (pagedImages.length === index + 1) {
           return (
-            <ImageContainer key={img.id} ref={imgRef}>
+            <ImageContainer key={`${img.id}-${index}`} ref={imgRef}>
               <ImageComponent
                 imgSrc={img.src.original}
                 alt={`${img.photographer}-${img.id} photo`}
@@ -33,7 +33,7 @@ export default function ImageList({ pagedImages, imgRef }) {
           );
         } else {
           return (
-            <ImageContainer key={img.id}>
+            <ImageContainer key={`${img.id}-${index}`}>
               <ImageComponent
                 imgSrc={img.src.original}
                 alt={`${img.photographer}-${img.id} photo`}

@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import { FcList, FcGrid } from 'react-icons/fc';
 import styled from 'styled-components';
 import Layout from '@/components/layout/Layout';
@@ -6,6 +6,8 @@ import ListView from '@/components/views/ListView';
 import GridView from '@/components/views/GridView';
 import useImageList from 'hooks/useImageList';
 import styles from '@/styles/HomePage.module.css';
+import { environment, PAGE_SIZE } from '@/config/index';
+const env = process.env.NODE_ENV || 'development';
 
 const ViewOptionSection = styled.section`
   display: flex;
@@ -20,10 +22,16 @@ const Divider = styled.hr`
   width: 100%;
 `;
 
-export default function HomePage() {
+export default function HomePage({ images }) {
   const [viewType, setViewType] = useState('list');
   const [pageNumber, setPageNumber] = useState(1);
   const { isLoading, isError, imageList, hasMore } = useImageList(pageNumber);
+  const [pagedImages, setPagedImages] = useState(images);
+
+  useEffect(() => {
+    if (imageList.length) setPagedImages(imageList);
+    else setPagedImages(images);
+  }, [imageList, images]);
 
   const observer = useRef();
   const lastImageForAPageRef = useCallback(
@@ -67,13 +75,25 @@ export default function HomePage() {
       <Divider />
       <div style={{ height: '100%', width: '100%' }} id="img-section">
         {viewType === 'list' ? (
-          <ListView pagedImages={imageList} imgRef={lastImageForAPageRef} />
+          <ListView pagedImages={pagedImages} imgRef={lastImageForAPageRef} />
         ) : (
-          <GridView pagedImages={imageList} imgRef={lastImageForAPageRef} />
+          <GridView pagedImages={pagedImages} imgRef={lastImageForAPageRef} />
         )}
       </div>
       <div>{isLoading && 'Loading...'}</div>
       <div>{isError && 'Something went wrong'}</div>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    `${environment[env].API_URL}/api/images?per_page=${PAGE_SIZE}&page=1`
+  );
+  const pagedImages = await res.json();
+  return {
+    props: {
+      images: pagedImages.photos,
+    },
+  };
 }
