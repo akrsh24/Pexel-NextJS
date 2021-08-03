@@ -60,13 +60,16 @@ export default function Image() {
             </DetailsSectionContent>
             <DetailsSectionContent>
               Photographer URL:{' '}
-              <StyledAnchorLink href={imageInfo.photographer_url}>
+              <StyledAnchorLink
+                href={imageInfo.photographer_url}
+                target="_blank"
+              >
                 {imageInfo.photographer_url}
               </StyledAnchorLink>
             </DetailsSectionContent>
             <DetailsSectionContent>
               URL:
-              <StyledAnchorLink href={imageInfo.url}>
+              <StyledAnchorLink href={imageInfo.url} target="_blank">
                 {imageInfo.url}
               </StyledAnchorLink>
             </DetailsSectionContent>

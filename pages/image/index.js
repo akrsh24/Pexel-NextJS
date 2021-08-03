@@ -94,6 +94,7 @@ export async function getServerSideProps(context) {
     }
   );
   const pagedImages = await res.json();
+  console.log('pagedImages', pagedImages.photos);
   return {
     props: {
       images: pagedImages.photos,
